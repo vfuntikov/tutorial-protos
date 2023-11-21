@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package rocket;
 
+option go_package = "./rocket/v1/rocket";
+
 // Rocket represents the model of our rocket
 message Rocket {
     string id = 1;
@@ -14,7 +16,7 @@ message Rocket {
 service RocketService {
     rpc GetRocket(GetRocketRequest) returns (GetRocketResponse);
     rpc AddRocket(AddRocketRequest) returns (AddRocketResponse);
-    rpc GetRocket(DeleteRocketRequest) returns (DeleteRocketResponse);
+    rpc DeleteRocket(DeleteRocketRequest) returns (DeleteRocketResponse);
 }
 
 // --- Get Rocket Handler ---
@@ -34,5 +36,15 @@ message AddRocketRequest {
 
 message AddRocketResponse {
     Rocket rocket = 1;
+}
+// -- --
+
+// --- Delete Rocket Handler ---
+message DeleteRocketRequest {
+    Rocket rocket = 1;
+}
+
+message DeleteRocketResponse {
+    string status = 1;
 }
 // -- --
